@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/geolocation.dart';
 import 'package:geolocator/geolocator.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyanAccent),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -91,16 +92,24 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Geolocation Example'),
+        title: const Text('AMRIT Demo'),
       ),
-      body: Center(
-        child: _position != null ? Text('Current Location: ' + _position.toString()): Text('No location data'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/logo.png'),
+          Text(_position != null ? 'Current Location: $_position' : ''),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const GeolocationPage())
+              );
+            },
+            child: const Text('Geolocation Test'),
+          )
+        ]
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _getCurrentLocation,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      )
     );
   }
 }
