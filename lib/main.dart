@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/geolocation.dart';
+import 'package:flutter_application_1/qr.dart';
 import 'package:geolocator/geolocator.dart';
 
 void main() {
@@ -107,6 +108,15 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
             child: const Text('Geolocation Test'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => QrCodeScanner())
+              );
+            },
+            child: const Text('QR Test'),
           )
         ]
       ),
