@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/database.dart';
 import 'package:flutter_application_1/geolocation.dart';
 import 'package:flutter_application_1/qr.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -60,6 +61,15 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
             child: Text(AppLocalizations.of(context)!.qrButton),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DatabasePage())
+              );
+            },
+            child: Text('DB test'),
           )
         ]
       ),
