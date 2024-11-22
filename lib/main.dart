@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/geolocation.dart';
 import 'package:flutter_application_1/qr.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,20 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyanAccent),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AMRIT Demo'),
+        title: Text(AppLocalizations.of(context)!.title),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => const GeolocationPage())
               );
             },
-            child: const Text('Geolocation Test'),
+            child: Text(AppLocalizations.of(context)!.geolocationButton),
           ),
           TextButton(
             onPressed: () {
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => const QrCodeScanner())
               );
             },
-            child: const Text('QR Test'),
+            child: Text(AppLocalizations.of(context)!.qrButton),
           )
         ]
       ),

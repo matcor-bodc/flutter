@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QrCodeScanner extends StatefulWidget {
   const QrCodeScanner({super.key});
@@ -25,8 +26,8 @@ class _QrState extends State<QrCodeScanner> {
               content: Text(barcodes[0].rawValue!),
               actions: <Widget>[
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'OK'),
-                  child: const Text('Dismiss'),
+                  onPressed: () => Navigator.pop(context, AppLocalizations.of(context)!.ok),
+                  child: Text(AppLocalizations.of(context)!.dismiss),
                 ),
               ],
             ),

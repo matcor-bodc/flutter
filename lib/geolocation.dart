@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GeolocationPage extends StatefulWidget {
   const GeolocationPage({super.key});
@@ -28,12 +29,12 @@ class _GeolocationState extends State<GeolocationPage> {
         // Android's shouldShowRequestPermissionRationale
         // returned true. According to Android guidelines
         // your App should show an explanatory UI now.
-        return Future.error('Location permissions are denied');
+        return Future.error(AppLocalizations.of(context)!.locationPermissionDenied);
       }
     }
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
-      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error(AppLocalizations.of(context)!.locationPermissionBlocked);
     }
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
@@ -49,9 +50,9 @@ class _GeolocationState extends State<GeolocationPage> {
         children: [
           TextButton(
             onPressed: _getCurrentLocation,
-            child: const Text('Show Location'),
+            child: Text(AppLocalizations.of(context)!.showLocationButton),
           ),
-          Text(_position != null ? 'Current Location: $_position' : '')
+          Text(_position != null ? AppLocalizations.of(context)!.currentLocation(_position!.latitude, _position!.longitude): '')
         ],
       ),
     );
