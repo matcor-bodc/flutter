@@ -14,26 +14,29 @@ class _QrState extends State<QrCodeScanner> {
 
   @override
   Widget build(BuildContext context) {
-    return MobileScanner(
-      controller: controller,
-      onDetect: (BarcodeCapture capture) {
-        final List<Barcode> barcodes = capture.barcodes;
+    return Scaffold(
+      appBar: AppBar(),
+      body: MobileScanner(
+        controller: controller,
+        onDetect: (BarcodeCapture capture) {
+          final List<Barcode> barcodes = capture.barcodes;
 
-        if (barcodes.length > 0) {
-          showDialog<String>(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              content: Text(barcodes[0].rawValue!),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, AppLocalizations.of(context)!.ok),
-                  child: Text(AppLocalizations.of(context)!.dismiss),
-                ),
-              ],
-            ),
-          );
-        }
-      },
+          if (barcodes.length > 0) {
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                content: Text(barcodes[0].rawValue!),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, AppLocalizations.of(context)!.ok),
+                    child: Text(AppLocalizations.of(context)!.dismiss),
+                  ),
+                ],
+              ),
+            );
+          }
+        },
+      )
     );
   }
 }
