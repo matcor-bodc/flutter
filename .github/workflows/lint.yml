@@ -15,13 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set Up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.24.5'
-          channel: 'stable'
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v1
+      - run: flutter pub get
       - name: Analyze Dart
-        run: flutter analyze
-        # uses: zgosalvez/github-actions-analyze-dart@v1
+        uses: zgosalvez/github-actions-analyze-dart@v2
