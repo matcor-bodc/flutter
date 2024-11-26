@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -33,13 +32,11 @@ class _DatabaseState extends State<DatabasePage> {
     await db.execute('CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER, number REAL)');
     // Insert some records in a transaction
     await db.transaction((txn) async {
-      int id1 = await txn.rawInsert(
+      await txn.rawInsert(
           'INSERT INTO Test(name, value, number) VALUES("some name", 1234, 456.789)');
-      print('inserted1: $id1');
-      int id2 = await txn.rawInsert(
+      await txn.rawInsert(
           'INSERT INTO Test(name, value, number) VALUES(?, ?, ?)',
           ['another name', 12345678, 3.1416]);
-      print('inserted2: $id2');
     });
 
     final results = await(db.query('test'));
@@ -76,7 +73,7 @@ class _DatabaseState extends State<DatabasePage> {
                   TableCell(child: Text(record.name)),
                   TableCell(child: Text(record.number.toString())),
                 ])
-              ).toList()
+              )
             ],
           ),
           TextButton(

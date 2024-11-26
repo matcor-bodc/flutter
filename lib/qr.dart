@@ -21,7 +21,7 @@ class _QrState extends State<QrCodeScanner> {
         onDetect: (BarcodeCapture capture) {
           final List<Barcode> barcodes = capture.barcodes;
 
-          if (barcodes.length > 0) {
+          if (barcodes.isNotEmpty) {
             showDialog<String>(
               context: context,
               builder: (BuildContext context) => AlertDialog(
